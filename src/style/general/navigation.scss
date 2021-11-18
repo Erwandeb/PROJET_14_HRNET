@@ -1,0 +1,21 @@
+.navigation{
+  background-color: #7FC06C;
+  width: 250px;
+  height: 37px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  .button-redirection{
+  color: white;
+  text-decoration: none;
+  }
+  &:hover{
+    background-color: #8bc07b;
+}
+}
+
