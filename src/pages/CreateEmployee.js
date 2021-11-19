@@ -2,7 +2,7 @@ import React from 'react';
 import Form from '../components/CreateEmployee/Form';
 import Footer from '../components/general/Footer';
 import Navigation from '../components/general/Navigation';
-import { DatePicker } from '../components/Plugins/DateSelector';
+
 
 const Home = () => {
     return (
@@ -14,11 +14,10 @@ const Home = () => {
             <div className="cointainer">
                 <h2> Create Employees</h2>
                 <Form/>
-                <DatePicker/>
+             
             </div>
             <Footer/>
         </div>
-   
     );
 };
 

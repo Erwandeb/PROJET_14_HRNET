@@ -1,0 +1,30 @@
+.date-picker{
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    height: 60px;
+    background-color: whitesmoke;
+    margin-top: 30px auto;
+    cursor: pointer;
+    user-select: none;
+}
+
+.date-picker .selected-date{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.date-picker .dates{
+    display: none;
+    position: absolute;
+    top:100%;
+    left: 0;
+    right: 0;
+    background-color: yellow;
+}
+
+.date-picker .dates .active{
+    display:block;
+}
