@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-
+import { ModalDialog } from '../Plugins/ModalDialog';
 
 const FormName = () => {
 
@@ -18,10 +18,12 @@ const FormName = () => {
         * 2- Envoie une modale de confirmation a l'utilisateur
         */
         e.preventDefault();
-
-
+        console.log("boum")
+        
+        const test = "yo";
+        //ModalDialog(test);
+        
     }
-
 
 
     return (
@@ -29,7 +31,7 @@ const FormName = () => {
             <form action="#" onSubmit={handleSavingForm} >
                 <fieldset className="identity">
                     <legend>Identity</legend>
-                        <label for="first-name">
+                        <label htmlFor="first-name">
                             Firstname :  
                             <input 
                             type="text" 
@@ -40,7 +42,7 @@ const FormName = () => {
                             maxLength="15"
                             />
                         </label>
-                        <label for="last-name">
+                        <label htmlFor="last-name">
                             Lastname :  
                             <input 
                             type="text" 
@@ -51,7 +53,7 @@ const FormName = () => {
                             maxLength="15"
                             />
                         </label>
-                        <label for="Birthdate">
+                        <label htmlFor="Birthdate">
                             Birthdate :  
                             
                         </label>
@@ -63,7 +65,7 @@ const FormName = () => {
                 <i class="fas fa-arrow-right"></i>
                 <fieldset className="adress">
                     <legend>Adress</legend>
-                        <label for="first-name">
+                        <label htmlFor="first-name">
                             Street:  
                             <input 
                             type="text" 
@@ -72,7 +74,7 @@ const FormName = () => {
                             value={street}
                             />
                         </label>
-                        <label for="city">
+                        <label htmlFor="city">
                             city :  
                             <input 
                             type="text" 
@@ -81,11 +83,11 @@ const FormName = () => {
                             value={city}
                             />
                         </label>
-                        <label for="state">
+                        <label htmlFor="state">
                             state :  
                             <input type="text"></input>
                         </label>
-                        <label for="Zip-code">
+                        <label htmlFor="Zip-code">
                             Zip-code  
                             <input 
                             type="number" 
@@ -98,7 +100,7 @@ const FormName = () => {
                 <i class="fas fa-arrow-right"></i>
                 <fieldset className="services">
                     <legend>Services</legend>
-                    <label for="department" className="departement-style">Department</label>
+                    <label htmlFor="department" className="departement-style">Department</label>
                         <select name="department" id="department">
                             <option>Sales</option>
                             <option>Marketing</option>
@@ -107,9 +109,9 @@ const FormName = () => {
                             <option>Legal</option>
                         </select>
                 </fieldset>
-               
+                <button className="save-form" type="submit">SAVE</button>
             </form>
-            <button className="save-form" type="submit">SAVE</button>
+           
         </div>
     );
 };

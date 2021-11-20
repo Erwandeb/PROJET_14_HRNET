@@ -5,6 +5,8 @@ import Navigation from '../components/general/Navigation';
 
 
 const Home = () => {
+
+
     return (
         <div className="home">
             <Navigation/>
