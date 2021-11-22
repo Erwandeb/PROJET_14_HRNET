@@ -8,11 +8,13 @@ export const DatePicker = () => {
     const dates_element = document.querySelector('.date-picker .dates')
 
 
-    date_picker_element.addEventListener('click',toggleDatePicker);
+    //date_picker_element.addEventListener('click',toggleDatePicker);
 
+    /*
     const toggleDatePicker =(e)=>{
         dates_element.classList.toggle('active');
     }
+    */
     
     return(
         <div className="date-picker">

@@ -10,7 +10,9 @@ const FormName = () => {
     const [lastname, setLastname] = useState("");
     const [street , setStreet] = useState("");
     const [city, setCity] = useState("");
-    const [zipCode, setZipCode] = useState(0)
+    const [zipCode, setZipCode] = useState(0);
+    const [displayModal, setDisplayModal] = useState(false);
+    const modalText = "Employee created !";
 
     const handleSavingForm = (e) =>{
         /**
@@ -18,11 +20,11 @@ const FormName = () => {
         * 2- Envoie une modale de confirmation a l'utilisateur
         */
         e.preventDefault();
-        console.log("boum")
-        
-        const test = "yo";
-        //ModalDialog(test);
-        
+        setDisplayModal(true);
+    }
+
+    const hiddingModal = ()=>{
+        setDisplayModal(false)
     }
 
 
@@ -55,7 +57,7 @@ const FormName = () => {
                         </label>
                         <label htmlFor="Birthdate">
                             Birthdate :  
-                            
+                            <input type="text"></input>
                         </label>
                         <label for="Start-date">
                             Start date :  
@@ -109,87 +111,18 @@ const FormName = () => {
                             <option>Legal</option>
                         </select>
                 </fieldset>
-                <button className="save-form" type="submit">SAVE</button>
+                <button className="save-form" type="submit" onClick={ModalDialog}>SAVE</button>
             </form>
-           
+            {
+                displayModal ? (
+                    <ModalDialog text={modalText} isHidding={hiddingModal}/>
+                ):(
+                    <div></div>
+                )
+            }
+         
         </div>
     );
 };
 
 export default FormName;
-
-
-
-
-
-/*
-const SignIncontent = () => {
-
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-
-    const  handleLogin =(e)=>{
-        e.preventDefault();
-
-        const identificationError = document.getElementById('identification-error');
-
-        axios({
-            method: "post",
-            url:`${process.env.REACT_APP_API_URL}api/v1/user/login`,
-            data: {
-                 email:username,
-                password:password,
-            },
-        })
-        .then((res)=>{
-            localStorage.setItem("token", res.data.body.token);
-            window.location='/profil';
-        })
-        .catch((err) => {
-            identificationError.innerHTML = "Vos identifiants sont incorrects !";
-            console.log(err.data);
-        })
-    };
-                
-    return (
-        <section className="sign-in-content">
-            <i className="fa fa-user-circle sign-in-icon"></i>
-            <h1>Sign In</h1>
-            <form action="" onSubmit={handleLogin}>
-                <div className="input-wrapper">
-                    <label htmlFor="username">Username</label>
-                    <input 
-                        type="text" 
-                        id="username"
-                        onChange={(e)=>setUsername(e.target.value)}
-                        value={username}
-                        minLength="2"
-                        maxLength="15"
-                    />
-                </div>
-                <div className="input-wrapper">
-                    <label htmlFor="password">Password</label >
-                        <input 
-                            type="password" 
-                            id="password"
-                            onChange={(e)=>setPassword(e.target.value)}
-                            value={password}
-                            minLength="2"
-                            maxLength="15"
-                        />
-                </div>
-                <div className="input-remember">
-                    <input 
-                        type="checkbox" 
-                        id="remember-me"
-                    />
-                    <label htmlFor="remember-me">Remember me</label>
-                </div>
-                <div id="identification-error"></div>
-                <button type="submit" className="sign-in-button">Sign in</button>
-            </form>
-        </section>
-    );
-};
-
-*/

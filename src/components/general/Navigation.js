@@ -1,44 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 
-const NavPortail = () => {
-
-    const [navigationDisplay, setNavigationDisplay] = useState(true);
-    
- 
-  function  handleNavigationDisplay(){
-    setNavigationDisplay(true)
-    }
-
-  function  handleNavigationDisplayReturn(){
-        setNavigationDisplay(false)
-    }
-    
+const NavPortail = (props) => {
     return (
         <div className="navigation">
-            {
-                navigationDisplay ?(
-                    <NavLink 
-                    className="button-redirection" 
-                    exact to ="/Employees"
-                    activeClassName="nav-active"
-                    onClick={handleNavigationDisplayReturn}
-                    >
-                      CURRENT VIEW EMPLOYEES
-                    </NavLink>
-                ):(
-                    <NavLink 
-                    className="button-redirection" 
-                    exact to ="/" 
-                    activeClassName="nav-active"
-                    onClick={handleNavigationDisplay}
-                    >
-                     HOME
-                    </NavLink>
-                )
-            }
-          
+            <NavLink 
+            className="button-redirection" 
+            exact to = {props.navContent.urlPath}
+            activeClassName="nav-active"
+            >
+            {props.navContent.currentNavName}
+            </NavLink>
         </div>
     );
 };
