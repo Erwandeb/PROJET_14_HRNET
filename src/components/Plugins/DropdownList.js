@@ -1,25 +1,18 @@
 import React from "react";
 
 
+
 export const DropdownList = (props) => {
-
-    console.log("vu props", props?.options?.states)
-    const states = props?.options?.states;
-    
-
-
-    console.log("states", states)
-    /*
- {
-                states.map(option => 
-                <options key={states?.name}>{states?.name}</options>
-                )
-            }
-    */
-
+    if(!props.options) {
+        return null
+    }
     return (
-        <select className="dropdow-list"  >
-           
+        <select className="dropdown-list"  >
+            {
+            props.options.map(element => 
+            <option key={element}>{element}</option>)
+            }
         </select>
     );
 };
+

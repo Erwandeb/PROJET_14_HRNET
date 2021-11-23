@@ -237,33 +237,11 @@ const states = [
     }
 ];
 
-const departement = [
-    {
-        "name": "Sales",
-        "abbreviation": ""
-    },
-    {
-        "name": "Marketing",
-        "abbreviation": ""
-    },
-    {
-        "name": "Enginnering",
-        "abbreviation": ""
-    },
-    {
-        "name": "Human Ressources",
-        "abbreviation": ""
-    },
-    {
-        "name": "Legal",
-        "abbreviation": ""
-    },
-];
+
+const departement = ["Sales","Marketing","Enginnering","Human Ressources","Legal"]
 
 
-
-
-module.exports = {
+ module.exports = {
     states,
-    departement
+    departement,
 }

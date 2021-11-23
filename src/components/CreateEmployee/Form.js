@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { DropdownList } from '../Plugins/DropdownList';
 import { ModalDialog } from '../Plugins/ModalDialog';
-import axios from 'axios'
 import dropDown from '../../dropDown';
 
 const FormName = () => {
@@ -40,8 +39,9 @@ const FormName = () => {
     * 
     */
     useEffect(() => {
-        setOptionList(dropDown)
-        console.log(optionList);
+        setOptionList(dropDown);
+        //const arrayTesting = Object.entries(optionList.states);
+        //console.log("arrayTesting",arrayTesting);
     });
 
     
@@ -105,7 +105,7 @@ const FormName = () => {
                         </label>
                         <label htmlFor="state">
                             state :  
-                            <DropdownList options={optionList} />
+                            <DropdownList options={optionList.departement} />
                         </label>
                         <label htmlFor="Zip-code">
                             Zip-code  
@@ -121,13 +121,7 @@ const FormName = () => {
                 <fieldset className="services">
                     <legend>Services</legend>
                     <label htmlFor="department" className="departement-style">Department</label>
-                        <select name="department" id="department">
-                            <option>Sales</option>
-                            <option>Marketing</option>
-                            <option>Engineering</option>
-                            <option>Human Resources</option>
-                            <option>Legal</option>
-                        </select>
+                        <DropdownList options={optionList.departement} />
                 </fieldset>
                 <button className="save-form" type="submit" onClick={ModalDialog}>SAVE</button>
             </form>
