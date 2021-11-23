@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import { DropdownList } from '../Plugins/DropdownList';
 import { ModalDialog } from '../Plugins/ModalDialog';
+import axios from 'axios'
+import dropDown from '../../dropDown';
 
 const FormName = () => {
-
- /*https://www.youtube.com/watch?v=SEkfzqIgvTo&ab_channel=Academind  ===>>> stateless component */
-
 
     const [firstname, setFirstname] = useState("");
     const [lastname, setLastname] = useState("");
@@ -12,22 +12,40 @@ const FormName = () => {
     const [city, setCity] = useState("");
     const [zipCode, setZipCode] = useState(0);
     const [displayModal, setDisplayModal] = useState(false);
+    const [optionList, setOptionList] = useState([]);
     const modalText = "Employee created !";
 
+
+    /**
+    * 1- récupère les données du formulaire et les pousse dans le store Redux.
+    * 2- Envoie une modale de confirmation a l'utilisateur
+    */
     const handleSavingForm = (e) =>{
-        /**
-        * 1- récupère les données du formulaire et les pousse dans le store Redux.
-        * 2- Envoie une modale de confirmation a l'utilisateur
-        */
         e.preventDefault();
         setDisplayModal(true);
     }
 
+    
+    /**
+    * Affichage de la modal
+    * 
+    */
     const hiddingModal = ()=>{
         setDisplayModal(false)
     }
 
+    
+    /**
+    * Handle data of select options list 
+    * 
+    */
+    useEffect(() => {
+        setOptionList(dropDown)
+        console.log(optionList);
+    });
 
+    
+    
     return (
         <div className="formDisplay">
             <form action="#" onSubmit={handleSavingForm} >
@@ -87,7 +105,7 @@ const FormName = () => {
                         </label>
                         <label htmlFor="state">
                             state :  
-                            <input type="text"></input>
+                            <DropdownList options={optionList} />
                         </label>
                         <label htmlFor="Zip-code">
                             Zip-code  
