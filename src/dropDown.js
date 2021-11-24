@@ -241,7 +241,8 @@ const states = [
 const departement = ["Sales","Marketing","Enginnering","Human Ressources","Legal"]
 
 
- module.exports = {
+const dropDown =  {
     states,
     departement,
 }
+export default dropDown;

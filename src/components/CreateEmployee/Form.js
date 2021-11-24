@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { DropdownList } from '../Plugins/DropdownList';
 import { ModalDialog } from '../Plugins/ModalDialog';
-import dropDown, { states } from '../../dropDown';
+import dropDown from '../../dropDown';
 
 const FormName = () => {
 
@@ -11,7 +11,10 @@ const FormName = () => {
     const [city, setCity] = useState("");
     const [zipCode, setZipCode] = useState(0);
     const [displayModal, setDisplayModal] = useState(false);
-    const [optionList, setOptionList] = useState([]);
+    const [optionList, setOptionList] = useState({
+        departement:[],
+        states:[]
+    });
     const modalText = "Employee created !";
 
 
@@ -40,10 +43,11 @@ const FormName = () => {
     */
     useEffect(() => {
         setOptionList(dropDown);
-    });
+    },[]);
     const departementOfEmployee = optionList.departement;
-    const statesAdressOfEmployee = Object.entries(optionList.states);
-    console.log(optionList.states.name)
+    
+    //const statesAdressOfEmployee = Object.entries(optionList.states);
+    // console.log(optionList.states.name)
  
     /*
     states.forEach(function(state) {
@@ -53,6 +57,10 @@ const FormName = () => {
         stateSelect.appendChild(option);
     });
     */
+
+     const handleStateChange = (id) => {
+        console.log(id)
+     }
 
     return (
         <div className="formDisplay">
@@ -113,7 +121,14 @@ const FormName = () => {
                         </label>
                         <label htmlFor="state">
                             state :  
-                            <DropdownList options={optionList.departement} />
+                            <DropdownList 
+                            options={optionList?.states?.map((element)=>{
+                                return {
+                                    id:element.abbreviation,
+                                    value:element.name
+                                }  
+                            })}
+                            onChange={handleStateChange} />
                         </label>
                         <label htmlFor="Zip-code">
                             Zip-code  
@@ -129,7 +144,12 @@ const FormName = () => {
                 <fieldset className="services">
                     <legend>Services</legend>
                     <label htmlFor="department" className="departement-style">Department</label>
-                        <DropdownList options={departementOfEmployee} />
+                        <DropdownList options={optionList?.departement?.map((element)=>{
+                                    return {
+                                        id:element,
+                                        value:element
+                                    }
+                                })} />
                 </fieldset>
                 <button className="save-form" type="submit" onClick={ModalDialog}>SAVE</button>
             </form>
@@ -140,7 +160,6 @@ const FormName = () => {
                     <div></div>
                 )
             }
-         
         </div>
     );
 };

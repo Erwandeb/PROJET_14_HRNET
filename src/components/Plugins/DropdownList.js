@@ -7,10 +7,10 @@ export const DropdownList = (props) => {
         return null
     }
     return (
-        <select className="dropdown-list"  >
+        <select className="dropdown-list" onChange={(e)=>props.onChange(e.target.value)}>
             {
             props.options.map(element => 
-            <option key={element}>{element}</option>)
+            <option key={element.id} value={element.id}>{element.value}</option>)
             }
         </select>
     );
