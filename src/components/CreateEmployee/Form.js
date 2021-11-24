@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { DropdownList } from '../Plugins/DropdownList';
 import { ModalDialog } from '../Plugins/ModalDialog';
-import dropDown from '../../dropDown';
+import dropDown, { states } from '../../dropDown';
 
 const FormName = () => {
 
@@ -40,12 +40,20 @@ const FormName = () => {
     */
     useEffect(() => {
         setOptionList(dropDown);
-        //const arrayTesting = Object.entries(optionList.states);
-        //console.log("arrayTesting",arrayTesting);
     });
+    const departementOfEmployee = optionList.departement;
+    const statesAdressOfEmployee = Object.entries(optionList.states);
+    console.log(optionList.states.name)
+ 
+    /*
+    states.forEach(function(state) {
+        const option = document.createElement('option');
+        option.value = state.abbreviation;
+        option.text = state.name;
+        stateSelect.appendChild(option);
+    });
+    */
 
-    
-    
     return (
         <div className="formDisplay">
             <form action="#" onSubmit={handleSavingForm} >
@@ -121,7 +129,7 @@ const FormName = () => {
                 <fieldset className="services">
                     <legend>Services</legend>
                     <label htmlFor="department" className="departement-style">Department</label>
-                        <DropdownList options={optionList.departement} />
+                        <DropdownList options={departementOfEmployee} />
                 </fieldset>
                 <button className="save-form" type="submit" onClick={ModalDialog}>SAVE</button>
             </form>
