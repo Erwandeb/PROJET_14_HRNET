@@ -92,7 +92,7 @@ const FormName = () => {
                         </label>
                         <label for="Start-date">
                             Start date :  
-                            <DatePicker/>
+                            <DatePicker />
                         </label>
                 </fieldset>
                 <i class="fas fa-arrow-right"></i>
@@ -163,5 +163,7 @@ const FormName = () => {
         </div>
     );
 };
+
+
 
 export default FormName;
