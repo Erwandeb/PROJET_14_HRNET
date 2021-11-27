@@ -7,7 +7,7 @@ export const DatePicker = (props) => {
 
     return(
       <input className="date-picker" type="date">
-            
+        
       </input>
     );
 };
