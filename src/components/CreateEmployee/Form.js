@@ -29,28 +29,18 @@ const FormName = () => {
         setDisplayModal(true);
     }
 
-    
-    /**
-    * Affichage de la modal
-    * 
-    */
+    useEffect(() => {
+        setOptionList(dropDown);
+    },[]);   
+
     const hiddingModal = ()=>{
         setDisplayModal(false)
     }
 
-    
-    /**
-    * Handle data of select options list 
-    * 
-    */
-    useEffect(() => {
-        setOptionList(dropDown);
-    },[]);
- 
-
     const handleStateChangeState = (id) => {
     setStateOfEmployee(id);
     }
+
     const handleStateChangeDepartement = (id) => {
     setdepartementEmployee(id);
     }
@@ -58,6 +48,29 @@ const FormName = () => {
     const handleChangeBirthDate =(date)=>{
         setBirthDate({date})
     }
+
+
+    /**
+    * All Data from the form (manually fill by user) are set in "userData" object  
+    */
+    const userData = {
+        firstname : firstname,
+        lastname : lastname,
+        birthdate : birthDate,
+        startdate: startDate,
+        street : street,
+        city : city,
+        zipCode : zipCode,
+        stateOfEmployee:stateOfEmployee,
+        departementEmployee: departementEmployee
+    }
+
+    /**
+    * React Context to pass all data to EmployeeList
+    */
+    const formContext = React.createContext(userData);
+    
+    
 
     return (
         <div className="formDisplay">

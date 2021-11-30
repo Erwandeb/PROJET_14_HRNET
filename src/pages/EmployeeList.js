@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext }  from 'react';
 import Footer from '../components/general/Footer';
 import Navigation from '../components/general/Navigation';
 import { DataTable } from '../components/Plugins/DataTable';
+
 
 const Employees = () => {
 
@@ -9,7 +10,9 @@ const Employees = () => {
         currentNavName: 'Home',
         urlPath: '/'
     }
-    
+
+ 
+
     return (
         <div className="employees">
             <Navigation navContent={ButtonNavigationContent}/>
@@ -18,7 +21,7 @@ const Employees = () => {
                 <h1>CURRENT EMPLOYEES</h1>
             </div>
             <div className="form-block">
-               <DataTable/>
+            <DataTable/>
             </div>
             <Footer/>
         </div>
