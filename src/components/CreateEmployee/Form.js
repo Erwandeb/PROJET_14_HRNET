@@ -15,9 +15,10 @@ const FormName = () => {
     const [optionList, setOptionList] = useState({});
     const [stateOfEmployee, setStateOfEmployee] = useState("");
     const [departementEmployee, setdepartementEmployee] = useState("");
-    const [birthDate , setBirthDate] = useState(new Date());
+    const [birthDate , setBirthDate] = useState();
     const [startDate, setStartDate] = useState();
     const modalText = "Employee created !";
+
 
 
     /**
@@ -45,7 +46,7 @@ const FormName = () => {
     setdepartementEmployee(id);
     }
 
-    const handleChangeBirthDate =(date)=>{
+    const handleChangeBirthDate = (date)=>{
         setBirthDate({date})
     }
 
@@ -65,13 +66,12 @@ const FormName = () => {
         departementEmployee: departementEmployee
     }
 
+    console.log(userData)
     /**
     * React Context to pass all data to EmployeeList
     */
     const formContext = React.createContext(userData);
     
-    
-
     return (
         <div className="formDisplay">
             <form action="#" onSubmit={handleSavingForm} >
@@ -101,11 +101,11 @@ const FormName = () => {
                         </label>
                         <label htmlFor="Birthdate">
                             Birthdate :  
-                            <DatePicker onChange={handleChangeBirthDate} />
+                            <DatePicker handleDate={birthDate => setBirthDate(birthDate)}/>
                         </label>
                         <label for="Start-date">
                             Start date :  
-                            <DatePicker />
+                            <DatePicker handleDate={startDate => setStartDate(startDate)}/>
                         </label>
                 </fieldset>
                 <i class="fas fa-arrow-right"></i>
