@@ -70,7 +70,8 @@ const FormName = () => {
     /**
     * React Context to pass all data to EmployeeList
     */
-    const formContext = React.createContext(userData);
+    const formContext = React.createContext({users:[]});
+    
     
     return (
         <div className="formDisplay">
