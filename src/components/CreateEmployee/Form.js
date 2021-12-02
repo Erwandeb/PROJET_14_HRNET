@@ -1,8 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import { DropdownList } from '../Plugins/DropdownList';
 import { ModalDialog } from '../Plugins/ModalDialog';
 import dropDown from '../../dropDown';
 import { DatePicker } from '../Plugins/DatePicker';
+import {userContextGeneral} from '../../userContext';
 
 const FormName = () => {
 
@@ -18,8 +19,18 @@ const FormName = () => {
     const [birthDate , setBirthDate] = useState();
     const [startDate, setStartDate] = useState();
     const modalText = "Employee created !";
-
-
+    const [userData, setUserData] = useState({
+        firstname : "",
+        lastname : "",
+        birthdate : "",
+        startdate: "",
+        street : "",
+        city : "",
+        zipCode : 0,
+        stateOfEmployee:"",
+        departementEmployee: ""
+    })
+    const [dataToContext, setDataToContext] = useContext(userContextGeneral)
 
     /**
     * 1- récupère les données du formulaire et les pousse dans le store Redux.
@@ -28,6 +39,19 @@ const FormName = () => {
     const handleSavingForm = (e) =>{
         e.preventDefault();
         setDisplayModal(true);
+        setUserData({
+            firstname : firstname,
+            lastname : lastname,
+            birthdate : birthDate,
+            startdate: startDate,
+            street : street,
+            city : city,
+            zipCode : zipCode,
+            stateOfEmployee:stateOfEmployee,
+            departementEmployee: departementEmployee
+        })
+
+        setDataToContext(userData);
     }
 
     useEffect(() => {
@@ -54,25 +78,27 @@ const FormName = () => {
     /**
     * All Data from the form (manually fill by user) are set in "userData" object  
     */
-    const userData = {
-        firstname : firstname,
-        lastname : lastname,
-        birthdate : birthDate,
-        startdate: startDate,
-        street : street,
-        city : city,
-        zipCode : zipCode,
-        stateOfEmployee:stateOfEmployee,
-        departementEmployee: departementEmployee
-    }
 
-    console.log(userData)
+    // // const userData = {
+    // //     firstname : firstname,
+    // //     lastname : lastname,
+    // //     birthdate : birthDate,
+    // //     startdate: startDate,
+    // //     street : street,
+    // //     city : city,
+    // //     zipCode : zipCode,
+    // //     stateOfEmployee:stateOfEmployee,
+    // //     departementEmployee: departementEmployee
+    // // }
+
+    // // console.log(userData)
     /**
     * React Context to pass all data to EmployeeList
     */
-    const formContext = React.createContext({users:[]});
+    // const formContext = React.createContext({users:[]});
     
-    
+
+
     return (
         <div className="formDisplay">
             <form action="#" onSubmit={handleSavingForm} >

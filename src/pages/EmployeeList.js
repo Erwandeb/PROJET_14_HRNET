@@ -11,8 +11,6 @@ const Employees = () => {
         urlPath: '/'
     }
 
- 
-
     return (
         <div className="employees">
             <Navigation navContent={ButtonNavigationContent}/>

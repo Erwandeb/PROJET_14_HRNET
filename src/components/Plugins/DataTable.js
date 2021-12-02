@@ -1,6 +1,8 @@
-import React from "react";
+import React,{useContext, useState} from "react";
+import { userContextGeneral } from "../../userContext";
 
 export const DataTable = (props) => {
+    const [userData, setUserData] = useContext(userContextGeneral);
 
     /*
     function loadTableData(props){
@@ -12,16 +14,11 @@ export const DataTable = (props) => {
         }
     }
     */
-
-    //Créer un systeme de tri de données pour chaque colonne
-    
-
-    return (
-        <div className="table-display">
-  
-           <table>
-               <thead>
-                    <tr>
+   /**
+    *            <div className="table-display">
+                <table>
+                    <thead>
+                        <tr>
                         <th>Firstname</th>
                         <th>Lastname</th>
                         <th>Birthdate</th>
@@ -30,11 +27,24 @@ export const DataTable = (props) => {
                         <th>Zip Code</th>
                         <th>State </th>
                         <th>Departement</th>
-                    </tr>
-               </thead>
-               <tbody id="tableDataDisplay"></tbody>
-           </table>
-        </div>
+                        </tr>
+                    </thead>
+                    <tbody id="tableDataDisplay"></tbody>
+                </table>
+            </div>
+    */
+
+    console.log(userData)
+    
+    return (
+        <userContextGeneral.Consumer>
+            {
+                user =>{
+                    console.log(user)
+                }
+            }
+        </userContextGeneral.Consumer>
+     
     );
 };
 
