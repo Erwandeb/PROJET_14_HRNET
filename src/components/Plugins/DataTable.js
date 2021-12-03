@@ -2,8 +2,9 @@ import React,{useContext, useState} from "react";
 import { userContextGeneral } from "../../userContext";
 
 export const DataTable = (props) => {
-    const [userData, setUserData] = useContext(userContextGeneral);
+    const {userData, setUserData} = useContext(userContextGeneral);
 
+    console.log(userData)
     /*
     function loadTableData(props){
         const tableBody = document.getElementById('tableDataDisplay');
@@ -34,7 +35,7 @@ export const DataTable = (props) => {
             </div>
     */
 
-    console.log(userData)
+    //console.log(userData)
     
     return (
         <userContextGeneral.Consumer>

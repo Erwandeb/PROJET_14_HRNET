@@ -19,6 +19,7 @@ const FormName = () => {
     const [birthDate , setBirthDate] = useState();
     const [startDate, setStartDate] = useState();
     const modalText = "Employee created !";
+
     const [userData, setUserData] = useState({
         firstname : "",
         lastname : "",
@@ -30,7 +31,9 @@ const FormName = () => {
         stateOfEmployee:"",
         departementEmployee: ""
     })
-    const [dataToContext, setDataToContext] = useContext(userContextGeneral)
+    
+ 
+    const {dataToContext, setDataToContext} = useContext(userContextGeneral)
 
     /**
     * 1- récupère les données du formulaire et les pousse dans le store Redux.
@@ -38,7 +41,7 @@ const FormName = () => {
     */
     const handleSavingForm = (e) =>{
         e.preventDefault();
-        setDisplayModal(true);
+
         setUserData({
             firstname : firstname,
             lastname : lastname,
@@ -50,14 +53,18 @@ const FormName = () => {
             stateOfEmployee:stateOfEmployee,
             departementEmployee: departementEmployee
         })
-
-        setDataToContext(userData);
+        
+    
+        console.log(userData)
+        setDisplayModal(true);
+        setDataToContext({userData})
     }
 
     useEffect(() => {
         setOptionList(dropDown);
-    },[]);   
-
+    },[]); 
+    
+  
     const hiddingModal = ()=>{
         setDisplayModal(false)
     }
@@ -75,26 +82,9 @@ const FormName = () => {
     }
 
 
-    /**
-    * All Data from the form (manually fill by user) are set in "userData" object  
-    */
+ 
+    
 
-    // // const userData = {
-    // //     firstname : firstname,
-    // //     lastname : lastname,
-    // //     birthdate : birthDate,
-    // //     startdate: startDate,
-    // //     street : street,
-    // //     city : city,
-    // //     zipCode : zipCode,
-    // //     stateOfEmployee:stateOfEmployee,
-    // //     departementEmployee: departementEmployee
-    // // }
-
-    // // console.log(userData)
-    /**
-    * React Context to pass all data to EmployeeList
-    */
     // const formContext = React.createContext({users:[]});
     
 
@@ -135,7 +125,7 @@ const FormName = () => {
                             <DatePicker handleDate={startDate => setStartDate(startDate)}/>
                         </label>
                 </fieldset>
-                <i class="fas fa-arrow-right"></i>
+             
                 <fieldset className="adress">
                     <legend>Adress</legend>
                         <label htmlFor="first-name">
@@ -148,7 +138,7 @@ const FormName = () => {
                             />
                         </label>
                         <label htmlFor="city">
-                            city :  
+                            City :  
                             <input 
                             type="text" 
                             id="lastname"
@@ -157,7 +147,7 @@ const FormName = () => {
                             />
                         </label>
                         <label htmlFor="state">
-                            state :  
+                            State :  
                             <DropdownList 
                             options={optionList?.states?.map((element)=>{
                                 return {
@@ -177,7 +167,6 @@ const FormName = () => {
                             />
                         </label>
                 </fieldset>
-                <i class="fas fa-arrow-right"></i>
                 <fieldset className="services">
                     <legend>Services</legend>
                     <label htmlFor="department" className="departement-style">Department</label>
@@ -201,6 +190,7 @@ const FormName = () => {
                 )
             }
         </div>
+       
     );
 };
 
