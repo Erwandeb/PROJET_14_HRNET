@@ -22,7 +22,7 @@ export const DatePicker = (props) => {
 
   let dateToDisplay ;
 
-  createDay();
+  //createDay();
 
   async function goToNextMonth(){
     month++;
@@ -33,6 +33,7 @@ export const DatePicker = (props) => {
     dateToDisplay = months[month] +' '+ year;
     // console.log(dateToDisplay)
     dateText.innerHTML=`${dateToDisplay}`
+    createDay()
   }
   
 
@@ -45,10 +46,9 @@ export const DatePicker = (props) => {
     dateToDisplay = months[month] +' '+ year;
     //console.log(dateToDisplay)
     dateText.innerHTML=`${dateToDisplay}`
+    createDay()
   }
 
-
-  
   function createDay(){
     displayDay.innerHTML="";
     let totalDaysInAMonth = 31;
