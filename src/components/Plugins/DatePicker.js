@@ -6,7 +6,8 @@ export const DatePicker = (props) => {
   const [displayDatePicker, setDisplayDatePicker] = useState(true);
 
   const dateText = document.querySelector('.date-text');
-  const displayDay = document.querySelector('.displayDay')
+  const displayDay = document.querySelector('.displayDay');
+
 
   const months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
 
@@ -20,9 +21,31 @@ export const DatePicker = (props) => {
   let month = date.getMonth();
   let year = date.getFullYear();
 
+  let selectedDate = date;
+  let selectedDay = day;
+  let selectedMonth = month;
+  let selectedYear = year;
+
   let dateToDisplay ;
 
-  //createDay();
+
+  function formatDate (d) {
+    let day = d.getDate();
+    if (day < 10) {
+      day = '0' + day;
+    }
+  
+    let month = d.getMonth() + 1;
+    if (month < 10) {
+      month = '0' + month;
+    }
+  
+    let year = d.getFullYear();
+  
+    return day + ' / ' + month + ' / ' + year;
+  }
+
+
 
   async function goToNextMonth(){
     month++;
@@ -31,10 +54,9 @@ export const DatePicker = (props) => {
       year++
     }
     dateToDisplay = months[month] +' '+ year;
-    // console.log(dateToDisplay)
     dateText.innerHTML=`${dateToDisplay}`
     createDay()
-  }
+  };
   
 
   async function goToPrevMonth (){
@@ -44,10 +66,9 @@ export const DatePicker = (props) => {
       year --;
     }
     dateToDisplay = months[month] +' '+ year;
-    //console.log(dateToDisplay)
     dateText.innerHTML=`${dateToDisplay}`
     createDay()
-  }
+  };
 
   function createDay(){
     displayDay.innerHTML="";
@@ -61,16 +82,24 @@ export const DatePicker = (props) => {
       const dayElement = document.createElement('div');
       dayElement.classList.add('day');
       dayElement.textContent = i+1;
+
+      dayElement.addEventListener('click', function () {
+        selectedDate = new Date(year+'-'+(month+1)+'-'+(i+1));
+        selectedDay = (i+1);
+        selectedMonth = month;
+        selectedYear = year;
+       
+        dateText.textContent = formatDate(selectedDate);
+        dateText.dataset.value = selectedDate;
+        createDay();
+      })
+      
       displayDay.appendChild(dayElement);
+        
     }
   }
 
 
-  console.log(date)
-  console.log(month--)
-  console.log("year ", year--)
-  console.log(day)
-  console.log(dateToDisplay)
 
     return( 
     <>
