@@ -47,7 +47,7 @@ export const DatePicker = (props) => {
 
 
 
-  async function goToNextMonth(){
+   function goToNextMonth(){
     month++;
     if(month > 11){
       month = 0;
@@ -59,7 +59,7 @@ export const DatePicker = (props) => {
   };
   
 
-  async function goToPrevMonth (){
+  function goToPrevMonth (){
     month --;
     if(month < 0){
       month = 11;
@@ -70,7 +70,7 @@ export const DatePicker = (props) => {
     createDay()
   };
 
-  function createDay(){
+   function createDay(){
     displayDay.innerHTML="";
     let totalDaysInAMonth = 31;
     
@@ -83,6 +83,11 @@ export const DatePicker = (props) => {
       dayElement.classList.add('day');
       dayElement.textContent = i+1;
 
+      if (selectedDay == (i + 1) && selectedYear == year && selectedMonth == month) {
+        dayElement.classList.add('selected');
+      }
+
+      // eslint-disable-next-line no-loop-func
       dayElement.addEventListener('click', function () {
         selectedDate = new Date(year+'-'+(month+1)+'-'+(i+1));
         selectedDay = (i+1);
@@ -95,11 +100,8 @@ export const DatePicker = (props) => {
       })
       
       displayDay.appendChild(dayElement);
-        
     }
   }
-
-
 
     return( 
     <>
