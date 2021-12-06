@@ -9,12 +9,12 @@ import {userContextGeneral} from './userContext';
 function App() {
 
   const [users, setUsers] = useState({
-    firstname : "",
-    lastname : "",
+    firstname : "Monsieur",
+    lastname : "test",
     birthdate : "",
     startdate: "",
     street : "",
-    city : "",
+    city : "hawaii",
     zipCode : 0,
     stateOfEmployee:"",
     departementEmployee: ""
@@ -22,6 +22,7 @@ function App() {
 
   const value = { users, setUsers };
 
+  console.log("value from app", value);
 
   return (
     <div className="App">
@@ -32,7 +33,7 @@ function App() {
             <Route path="/Employees" exact element={<Employees/>}/>
           </Routes>
         </BrowserRouter>
-        </userContextGeneral.Provider>
+      </userContextGeneral.Provider>
     </div>
   );
 }

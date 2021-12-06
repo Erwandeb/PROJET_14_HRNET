@@ -45,8 +45,6 @@ export const DatePicker = (props) => {
     return day + ' / ' + month + ' / ' + year;
   }
 
-
-
    function goToNextMonth(){
     month++;
     if(month > 11){
@@ -83,7 +81,7 @@ export const DatePicker = (props) => {
       dayElement.classList.add('day');
       dayElement.textContent = i+1;
 
-      if (selectedDay == (i + 1) && selectedYear == year && selectedMonth == month) {
+      if (selectedDay === (i + 1) && selectedYear === year && selectedMonth === month) {
         dayElement.classList.add('selected');
       }
 

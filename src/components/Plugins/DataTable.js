@@ -4,17 +4,8 @@ import { userContextGeneral } from "../../userContext";
 export const DataTable = (props) => {
     const {userData, setUserData} = useContext(userContextGeneral);
 
-    console.log(userData)
-    /*
-    function loadTableData(props){
-        const tableBody = document.getElementById('tableDataDisplay');
-        let dataHtml = "";
+   
 
-        for(let element of userData){
-            dataHtml+=`<tr></tr>`
-        }
-    }
-    */
    /**
     *            <div className="table-display">
                 <table>
@@ -35,13 +26,14 @@ export const DataTable = (props) => {
             </div>
     */
 
-    //console.log(userData)
     
     return (
-        <userContextGeneral.Consumer>
+        <userContextGeneral.Consumer >
             {
-                user =>{
-                    console.log(user)
+                user => {
+                    console.log("userdata from datatable 2", user)
+                    return <div>{user.users.firstname}</div>
+
                 }
             }
         </userContextGeneral.Consumer>

@@ -1,7 +1,6 @@
 import React from "react";
 
 
-
 export const DropdownList = (props) => {
     if(!props.options) {
         return null
@@ -15,4 +14,3 @@ export const DropdownList = (props) => {
         </select>
     );
 };
-
