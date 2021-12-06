@@ -3,18 +3,18 @@ import { BrowserRouter, Routes , Route} from "react-router-dom";
 import Home from './pages/CreateEmployee';
 import Employees from "./pages/EmployeeList";
 import './style/index.scss';
-import {userContextGeneral} from './userContext';
+import { userContext } from './userContext.js';
 
 
 function App() {
 
   const [users, setUsers] = useState({
-    firstname : "Monsieur",
-    lastname : "test",
+    firstname : "Mr",
+    lastname : "testman",
     birthdate : "",
     startdate: "",
     street : "",
-    city : "hawaii",
+    city : "",
     zipCode : 0,
     stateOfEmployee:"",
     departementEmployee: ""
@@ -27,14 +27,14 @@ function App() {
 
   return (
     <div className="App">
-      <userContextGeneral.Provider value={value}>
+      <userContext.Provider value={{users,setUsers}}>
         <BrowserRouter>
           <Routes>
             <Route path="/" exact element={<Home/>}/>
             <Route path="/Employees" exact element={<Employees/>}/>
           </Routes>
         </BrowserRouter>
-      </userContextGeneral.Provider>
+      </userContext.Provider>
     </div>
   );
 }

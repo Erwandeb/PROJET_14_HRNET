@@ -3,7 +3,8 @@ import { DropdownList } from '../Plugins/DropdownList';
 import { ModalDialog } from '../Plugins/ModalDialog';
 import dropDown from '../../dropDown';
 import { DatePicker } from '../Plugins/DatePicker';
-import {userContextGeneral} from '../../userContext';
+import {userContext} from '../../userContext';
+
 
 const FormName = () => {
 
@@ -19,9 +20,6 @@ const FormName = () => {
     const [birthDate , setBirthDate] = useState();
     const [startDate, setStartDate] = useState();
     const modalText = "Employee created !";
-    
-
-    const dataToContext = useContext(userContextGeneral)
     const [userData, setUserData] = useState({
         firstname : "",
         lastname : "",
@@ -32,16 +30,19 @@ const FormName = () => {
         zipCode : 0,
         stateOfEmployee:"",
         departementEmployee: ""
-    })
-    
+    });
+
+    const  {dataContext, setDataContext} = useContext(userContext);
  
 
     /**
     * 1- récupère les données du formulaire et les pousse dans le store Redux.
     * 2- Envoie une modale de confirmation a l'utilisateur
     */
-    const handleSavingForm = (e) =>{
+    const handleSavingForm = (e) => {
+
         e.preventDefault();
+        setDisplayModal(true);
 
         setUserData({
             firstname : firstname,
@@ -53,12 +54,11 @@ const FormName = () => {
             zipCode : zipCode,
             stateOfEmployee:stateOfEmployee,
             departementEmployee: departementEmployee
-        })
+        });
         
-        console.log(userData)
-        setDisplayModal(true);
+        console.log(dataContext);
 
-        const userContextGeneralTEST = React.createContext({
+        setDataContext({
             firstname : firstname,
             lastname : lastname,
             birthdate : birthDate,
@@ -70,18 +70,16 @@ const FormName = () => {
             departementEmployee: departementEmployee
         }); 
         
-        console.log("value from formulaire", dataToContext);
-        console.log("test du context", userContextGeneralTEST)
+        console.log("value from formulaire", dataContext);  
+
     }
 
-      
-
-
+ 
     useEffect(() => {
         setOptionList(dropDown);
     },[]); 
     
-  
+
     const hiddingModal = ()=>{
         setDisplayModal(false)
     }
@@ -201,7 +199,5 @@ const FormName = () => {
         </div>
     );
 };
-
-
 
 export default FormName;

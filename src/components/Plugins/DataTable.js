@@ -1,9 +1,9 @@
 import React,{useContext} from "react";
-import { userContextGeneral } from "../../userContext";
-import FormName from "../CreateEmployee/Form";
+import { userContext} from "../../userContext";
+
 
 export const DataTable = (props) => {
-    const userData = useContext(userContextGeneral);
+    const userData = useContext(userContext);
 
    function testCall(){
        console.log("from datatable", userData)
