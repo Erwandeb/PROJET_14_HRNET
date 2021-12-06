@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import { BrowserRouter, Routes , Route} from "react-router-dom";
 import Home from './pages/CreateEmployee';
 import Employees from "./pages/EmployeeList";
@@ -20,9 +20,10 @@ function App() {
     departementEmployee: ""
   });
 
+ 
+
   const value = { users, setUsers };
 
-  console.log("value from app", value);
 
   return (
     <div className="App">
