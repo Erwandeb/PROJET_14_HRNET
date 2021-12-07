@@ -32,7 +32,7 @@ const FormName = () => {
         departementEmployee: ""
     });
 
-    const  {dataContext, setDataContext} = useContext(userContext);
+    const {dataContext, setDataContext } = useContext(userContext);
  
 
     /**
@@ -58,6 +58,7 @@ const FormName = () => {
         
         console.log(dataContext);
 
+    
         setDataContext({
             firstname : firstname,
             lastname : lastname,
@@ -69,9 +70,8 @@ const FormName = () => {
             stateOfEmployee:stateOfEmployee,
             departementEmployee: departementEmployee
         }); 
-        
+       
         console.log("value from formulaire", dataContext);  
-
     }
 
  

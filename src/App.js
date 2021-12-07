@@ -8,7 +8,8 @@ import { userContext } from './userContext.js';
 
 function App() {
 
-  const [users, setUsers] = useState({
+  const [users, setUsers] = useState([
+    {
     firstname : "Mr",
     lastname : "testman",
     birthdate : "",
@@ -18,16 +19,15 @@ function App() {
     zipCode : 0,
     stateOfEmployee:"",
     departementEmployee: ""
-  });
+  }
+]);
 
- 
-
-  const value = { users, setUsers };
+const value = { users, setUsers };
 
 
   return (
     <div className="App">
-      <userContext.Provider value={{users,setUsers}}>
+      <userContext.Provider value={value}>
         <BrowserRouter>
           <Routes>
             <Route path="/" exact element={<Home/>}/>
