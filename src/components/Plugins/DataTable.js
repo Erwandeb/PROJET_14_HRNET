@@ -3,30 +3,41 @@ import { userContext} from "../../userContext";
 
 
 export const DataTable = (props) => {
-    const userData = useContext(userContext);
+    const  userData = useContext(userContext);
 
    function testCall(){
        console.log("from datatable", userData)
    }
+
+
 
     return (
         <div className="table-display">
             <table>
                 <thead>
                     <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Birthdate</th>
-                    <th>Start date</th>
-                    <th>City</th>
-                    <th>Zip Code</th>
-                    <th>State </th>
-                    <th>Departement</th>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Birthdate</th>
+                        <th>Start date</th>
+                        <th>City</th>
+                        <th>Zip Code</th>
+                        <th>State </th>
+                        <th>Departement</th>
                     </tr>
                 </thead>
-                <tbody id="tableDataDisplay"></tbody>
+                <tbody id="tableDataDisplay">
+                    <tr>
+                        <td>toto</td>
+                        <td>toto</td>
+                        <td>toto</td>
+                        <td>toto</td>
+                        <td>toto</td>
+                        <td>toto</td>
+                        <td>toto</td>
+                    </tr>
+                </tbody>
             </table>
-            <button onClick={testCall}></button>
         </div>
      
     );

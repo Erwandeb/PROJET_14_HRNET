@@ -33,13 +33,13 @@ const FormName = () => {
     });
 
     const {dataContext, setDataContext } = useContext(userContext);
- 
+   // const dataContext = useContext(userContext);
 
     /**
     * 1- récupère les données du formulaire et les pousse dans le store Redux.
     * 2- Envoie une modale de confirmation a l'utilisateur
     */
-    const handleSavingForm = (e) => {
+    const handleSavingForm = async (e) => {
 
         e.preventDefault();
         setDisplayModal(true);
@@ -58,20 +58,10 @@ const FormName = () => {
         
         console.log(dataContext);
 
-    
-        setDataContext({
-            firstname : firstname,
-            lastname : lastname,
-            birthdate : birthDate,
-            startdate: startDate,
-            street : street,
-            city : city,
-            zipCode : zipCode,
-            stateOfEmployee:stateOfEmployee,
-            departementEmployee: departementEmployee
-        }); 
+        
+        setDataContext(userData); 
+        
        
-        console.log("value from formulaire", dataContext);  
     }
 
  

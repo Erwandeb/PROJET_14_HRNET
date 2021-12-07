@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 
 
-export const DatePicker = (props) => {
+export const DatePicker =(props) => {
 
   const [displayDatePicker, setDisplayDatePicker] = useState(true);
 
@@ -29,7 +29,7 @@ export const DatePicker = (props) => {
   let dateToDisplay ;
 
 
-  function formatDate (d) {
+  async function formatDate (d) {
     let day = d.getDate();
     if (day < 10) {
       day = '0' + day;
@@ -45,7 +45,7 @@ export const DatePicker = (props) => {
     return day + ' / ' + month + ' / ' + year;
   }
 
-   function goToNextMonth(){
+   async function goToNextMonth(){
     month++;
     if(month > 11){
       month = 0;
@@ -57,7 +57,7 @@ export const DatePicker = (props) => {
   };
   
 
-  function goToPrevMonth (){
+  async function goToPrevMonth (){
     month --;
     if(month < 0){
       month = 11;
@@ -68,7 +68,7 @@ export const DatePicker = (props) => {
     createDay()
   };
 
-   function createDay(){
+   async function createDay(){
     displayDay.innerHTML="";
     let totalDaysInAMonth = 31;
     
