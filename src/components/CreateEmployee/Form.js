@@ -32,7 +32,7 @@ const FormName = () => {
         departementEmployee: ""
     });
 
-    const {dataContext, setDataContext } = useContext(userContext);
+    const {users, setUsers} = useContext(userContext);
    // const dataContext = useContext(userContext);
 
     /**
@@ -44,7 +44,7 @@ const FormName = () => {
         e.preventDefault();
         setDisplayModal(true);
 
-        setUserData({
+        const user = {
             firstname : firstname,
             lastname : lastname,
             birthdate : birthDate,
@@ -54,14 +54,10 @@ const FormName = () => {
             zipCode : zipCode,
             stateOfEmployee:stateOfEmployee,
             departementEmployee: departementEmployee
-        });
-        
-        console.log(dataContext);
+        }
 
-        
-        setDataContext(userData); 
-        
-       
+        setUsers(users.concat(user)); 
+
     }
 
  

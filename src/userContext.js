@@ -1,15 +1,18 @@
 //AuthenticationProvider.js
 import React, { useState, createContext } from "react";
 
-const DEFAULT_STATE = "";
+const DEFAULT_STATE = [];
 
-export const userContext  = createContext(DEFAULT_STATE);
+export const userContext  = createContext({
+  users:DEFAULT_STATE,
+  setUsers:()=>{}
+});
 
 export const AuthenticationProvider = ({ children }) => {
-  const [user, setUser] = useState(DEFAULT_STATE);
+  const [users, setUsers] = useState(DEFAULT_STATE);
 
   return (
-    <userContext.Provider value={[user, setUser]} >
+    <userContext.Provider value={{users, setUsers}} >
       {children}
     </userContext.Provider>
   );

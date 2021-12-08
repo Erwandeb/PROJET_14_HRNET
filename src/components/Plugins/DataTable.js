@@ -3,13 +3,10 @@ import { userContext} from "../../userContext";
 
 
 export const DataTable = (props) => {
-    const  userData = useContext(userContext);
+    const {users} = useContext(userContext);
 
-   function testCall(){
-       console.log("from datatable", userData)
-   }
-
-
+    console.log(users)
+ 
 
     return (
         <div className="table-display">
