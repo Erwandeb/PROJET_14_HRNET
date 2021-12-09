@@ -4,16 +4,11 @@ import React, {useState, useEffect} from "react";
 export const DatePicker =(props) => {
 
   const [displayDatePicker, setDisplayDatePicker] = useState(true);
-  const dateText = document.querySelector('.date-text');
-  const displayDay = document.querySelector('.displayDay');
-
-
+  const [displayDay, setDisplayDay] = useState();
+  const [dateToDisplay, setDateToDisplay] = useState("");
+  
+ 
   const months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
-
-  const showDatePicker = () => {
-    setDisplayDatePicker(false)
-    createDay()
-  }
 
   let date = new Date();
   let day = date.getDate();
@@ -25,50 +20,75 @@ export const DatePicker =(props) => {
   let selectedMonth = month;
   let selectedYear = year;
 
-  let dateToDisplay ;
+  let creatingMonthAndYear;
 
+ 
+  console.log("initialMonth", month)
+  const [dateOfTheDay, setDateOfTheDay] = useState(months[month]+ ' ' + day + 'th  ' + year);
 
+  const showDatePicker = () => {
+    setDisplayDatePicker(false)
+  }
+  /*
+  // Gestion du format
   function formatDate (d) {
     let day = d.getDate();
     if (day < 10) {
       day = '0' + day;
     }
   
-    let month = d.getMonth() + 1;
+    let month = d.getMonth()+1 ;
     if (month < 10) {
       month = '0' + month;
     }
-  
+
     let year = d.getFullYear();
-  
+
     return day + ' / ' + month + ' / ' + year;
   }
+*/
+
 
   function goToNextMonth(){
-    month++;
+   
+    setDateOfTheDay('');
+    month ++;
+    
+    
     if(month > 11){
       month = 0;
       year++
     }
-    dateToDisplay = months[month] +' '+ year;
-    dateText.innerHTML=`${dateToDisplay}`
-    createDay()
+    
+    console.log(month)
+    //creatingMonthAndYear = months[month] +' '+ year;
+  
+    setDateToDisplay( months[month] +' '+ year)
+
   };
   
+ 
 
   function goToPrevMonth (){
+    setDateOfTheDay('');
     month --;
+
     if(month < 0){
       month = 11;
       year --;
     }
-    dateToDisplay = months[month] +' '+ year;
-    dateText.innerHTML=`${dateToDisplay}`
-    createDay()
+
+    console.log(month)
+    //creatingMonthAndYear = months[month] +' '+ year;
+ 
+    //return setDateToDisplay(creatingMonthAndYear)
+ 
   };
 
+
+  /*
   function createDay(){
-    displayDay.innerHTML="";
+    
     let totalDaysInAMonth = 31;
     
     if (month === 1){
@@ -78,6 +98,9 @@ export const DatePicker =(props) => {
     for(let i=0; i<totalDaysInAMonth; i++){
       const dayElement = document.createElement('div');
       dayElement.classList.add('day');
+
+   
+
       dayElement.textContent = i+1;
 
       if (selectedDay === (i + 1) && selectedYear === year && selectedMonth === month) {
@@ -91,16 +114,19 @@ export const DatePicker =(props) => {
         selectedMonth = month;
         selectedYear = year;
        
-        dateText.textContent = formatDate(selectedDate);
-        dateText.dataset.value = selectedDate;
+        //dateText.textContent = formatDate(selectedDate);
+        //dateText.dataset.value = selectedDate;
         createDay();
       })
       
-      displayDay.appendChild(dayElement);
+        //displayDay.appendChild(dayElement);
+
+
     }
   }
+  */
 
-    return( 
+  return( 
     <>
       {
         displayDatePicker ? (
@@ -111,7 +137,7 @@ export const DatePicker =(props) => {
             <div className="date-picker">
               <div className="banner">
                 <i className="fas fa-arrow-left" onClick={goToPrevMonth}></i>
-                  <p className="date-text"></p>
+                  <p className="date-text">{dateOfTheDay}{dateToDisplay}</p>
                 <i className="fas fa-arrow-right" onClick={goToNextMonth}></i>
               </div>
             <div className="pick-a-day">
