@@ -3,17 +3,21 @@ import React, {useState, useEffect} from "react";
 
 export const DatePicker =(props) => {
 
+  let date = new Date();
   const [displayDatePicker, setDisplayDatePicker] = useState(true);
   const [displayDay, setDisplayDay] = useState();
   const [dateToDisplay, setDateToDisplay] = useState("");
+  const [month, setMonth] = useState(date.getMonth())
+  const [day, setDay] = useState(date.getDay())
+  const [year, setYear] = useState(date.getFullYear())
   
  
   const months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
 
-  let date = new Date();
-  let day = date.getDate();
-  let month = date.getMonth();
-  let year = date.getFullYear();
+ 
+  //let day = date.getDate();
+  //let month = date.getMonth();
+  //let year = date.getFullYear();
 
   let selectedDate = date;
   let selectedDay = day;
@@ -23,7 +27,6 @@ export const DatePicker =(props) => {
   let creatingMonthAndYear;
 
  
-  console.log("initialMonth", month)
   const [dateOfTheDay, setDateOfTheDay] = useState(months[month]+ ' ' + day + 'th  ' + year);
 
   const showDatePicker = () => {
@@ -52,18 +55,18 @@ export const DatePicker =(props) => {
   function goToNextMonth(){
    
     setDateOfTheDay('');
-    month ++;
+    setMonth(date.getMonth()+1)
+    console.log(month)
     
-    
-    if(month > 11){
-      month = 0;
-      year++
+    if(month > 10){
+      setMonth(0)
+      setYear(date.getFullYear()+1)
     }
     
     console.log(month)
     //creatingMonthAndYear = months[month] +' '+ year;
   
-    setDateToDisplay( months[month] +' '+ year)
+    setDateToDisplay(months[month] +' '+ year)
 
   };
   
@@ -71,17 +74,17 @@ export const DatePicker =(props) => {
 
   function goToPrevMonth (){
     setDateOfTheDay('');
-    month --;
+
+    setMonth(date.getMonth()-1)
 
     if(month < 0){
-      month = 11;
-      year --;
+      setMonth(11)
+      setYear(date.getFullYear()-1)
     }
-
     console.log(month)
     //creatingMonthAndYear = months[month] +' '+ year;
  
-    //return setDateToDisplay(creatingMonthAndYear)
+   setDateToDisplay(months[month] +' '+ year)
  
   };
 
@@ -120,8 +123,6 @@ export const DatePicker =(props) => {
       })
       
         //displayDay.appendChild(dayElement);
-
-
     }
   }
   */
@@ -137,7 +138,7 @@ export const DatePicker =(props) => {
             <div className="date-picker">
               <div className="banner">
                 <i className="fas fa-arrow-left" onClick={goToPrevMonth}></i>
-                  <p className="date-text">{dateOfTheDay}{dateToDisplay}</p>
+                  <p className="date-text">{dateToDisplay}</p>
                 <i className="fas fa-arrow-right" onClick={goToNextMonth}></i>
               </div>
             <div className="pick-a-day">

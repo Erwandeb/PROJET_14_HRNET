@@ -82,7 +82,6 @@ export const DataTable = (props) => {
     });
 
  
-
     return (
         <div className="table-display">
             <table>
