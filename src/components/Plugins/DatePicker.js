@@ -67,6 +67,7 @@ export const DatePicker =(props) => {
     //creatingMonthAndYear = months[month] +' '+ year;
   
     setDateToDisplay(months[month] +' '+ year)
+    createDay()
 
   };
   
@@ -85,11 +86,11 @@ export const DatePicker =(props) => {
     //creatingMonthAndYear = months[month] +' '+ year;
  
    setDateToDisplay(months[month] +' '+ year)
- 
+    createDay()
   };
 
 
-  /*
+  
   function createDay(){
     
     let totalDaysInAMonth = 31;
@@ -99,13 +100,14 @@ export const DatePicker =(props) => {
     }
 
     for(let i=0; i<totalDaysInAMonth; i++){
-      const dayElement = document.createElement('div');
-      dayElement.classList.add('day');
+      return <div key={i} className="day">{i+1}</div>
+      
 
-   
+      
 
-      dayElement.textContent = i+1;
+     
 
+     /*
       if (selectedDay === (i + 1) && selectedYear === year && selectedMonth === month) {
         dayElement.classList.add('selected');
       }
@@ -119,13 +121,13 @@ export const DatePicker =(props) => {
        
         //dateText.textContent = formatDate(selectedDate);
         //dateText.dataset.value = selectedDate;
-        createDay();
+        //createDay();
       })
-      
+      */
         //displayDay.appendChild(dayElement);
     }
   }
-  */
+  
 
   return( 
     <>
