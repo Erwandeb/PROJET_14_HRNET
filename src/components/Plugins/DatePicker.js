@@ -105,8 +105,6 @@ export const DatePicker =(props) => {
 
       
 
-     
-
      /*
       if (selectedDay === (i + 1) && selectedYear === year && selectedMonth === month) {
         dayElement.classList.add('selected');
