@@ -10,8 +10,9 @@ export const DatePicker =(props) => {
   const [month, setMonth] = useState(date.getMonth())
   const [day, setDay] = useState(date.getDay())
   const [year, setYear] = useState(date.getFullYear())
-  
- 
+
+  const [isDaySelected, setIsDaySelected] = useState(false);
+
   const months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
 
  
@@ -35,6 +36,8 @@ export const DatePicker =(props) => {
   const closeDatePicker = () => {
     setDisplayDatePicker(true);
   }
+
+
   /*
   // Gestion du format
   function formatDate (d) {
@@ -97,44 +100,64 @@ export const DatePicker =(props) => {
   
   function createDay(){
     
-    let totalDaysInAMonth = 31;
-    
+    //setIsDaySelected(false);
+    let totalDaysInMonth = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];
     
     if (month === 1){
-      totalDaysInAMonth = 28;
+      totalDaysInMonth = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28];
     }
     
-
-    
+    /*
     for(let i=0; i<totalDaysInAMonth; i++){
       return <div key={i} className="day">{i+1}</div>
     }
-    
-      /*
-      let dayDisplay = totalDaysInAMonth.map((day)=><div className="day">{day}</div>);
-      
-      return (dayDisplay);
-      */
-     /*
-      if (selectedDay === (i + 1) && selectedYear === year && selectedMonth === month) {
-        dayElement.classList.add('selected');
-      }
+    */
+   /*
+    if (selectedDay === (day) && selectedYear === year && selectedMonth === month) {
+      //day.classList.add('selected');
+      setIsisDaySelected(true);
+    } else{
+      setIsisDaySelected(false);
+    }
+    */
 
-      // eslint-disable-next-line no-loop-func
-      dayElement.addEventListener('click', function () {
-        selectedDate = new Date(year+'-'+(month+1)+'-'+(i+1));
-        selectedDay = (i+1);
+    function dateValue(){
+      /*
+        selectedDate = new Date(year+'-'+(month+1)+'-'+(day));
+        selectedDay = (day);
         selectedMonth = month;
         selectedYear = year;
-       
-        //dateText.textContent = formatDate(selectedDate);
-        //dateText.dataset.value = selectedDate;
-        //createDay();
-        closeDatePicker();
-      })
+      */
+     console.log("trigger")
+     setIsDaySelected(true);
+      //dateText.textContent = formatDate(selectedDate);
+      //dateText.dataset.value = selectedDate;
+      //closeDatePicker();
+    }
+      
+    setDisplayDay(totalDaysInMonth.map((day) =>
+      <div key={day} onClick={dateValue} className={`${isDaySelected ? "day-selected" : "day"}`}>
+          {day}
+      </div>)
+    );
+
+    return(displayDay)
+  
+      /*
+        // eslint-disable-next-line no-loop-func
+        dayElement.addEventListener('click', function () {
+          selectedDate = new Date(year+'-'+(month+1)+'-'+(i+1));
+          selectedDay = (i+1);
+          selectedMonth = month;
+          selectedYear = year;
+        
+          //dateText.textContent = formatDate(selectedDate);
+          //dateText.dataset.value = selectedDate;
+          //createDay();
+          closeDatePicker();
+        })
       */
         //displayDay.appendChild(dayElement);
-    
   }
   
 
@@ -153,7 +176,7 @@ export const DatePicker =(props) => {
                 <i className="fas fa-arrow-right" onClick={goToNextMonth}></i>
               </div>
             <div className="pick-a-day">
-                <div className="displayDay" onClick={createDay}>{}</div>
+                <div className="displayDay">{displayDay}</div>
             </div>
           </div>
           )
