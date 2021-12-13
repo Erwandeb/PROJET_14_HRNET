@@ -7,7 +7,7 @@ export const DataTable = (props) => {
 
     
     let displayUsers = users.map(user => {
-        return  <tr className="new-user-row">
+        return  <tr className="new-user-row" key={user.firstname}>
                     <td>{user.firstname}</td>
                     <td>{user.lastname}</td>
                     <td>eoeo</td>

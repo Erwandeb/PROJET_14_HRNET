@@ -20,20 +20,8 @@ const FormName = () => {
     const [birthDate , setBirthDate] = useState();
     const [startDate, setStartDate] = useState();
     const modalText = "Employee created !";
-    const [userData, setUserData] = useState({
-        firstname : "",
-        lastname : "",
-        birthdate : "",
-        startdate: "",
-        street : "",
-        city : "",
-        zipCode : 0,
-        stateOfEmployee:"",
-        departementEmployee: ""
-    });
 
     const {users, setUsers} = useContext(userContext);
-   // const dataContext = useContext(userContext);
 
     /**
     * 1- récupère les données du formulaire et les pousse dans le store Redux.
@@ -55,12 +43,9 @@ const FormName = () => {
             stateOfEmployee:stateOfEmployee,
             departementEmployee: departementEmployee
         }
-
         setUsers(users.concat(user)); 
-
     }
 
- 
     useEffect(() => {
         setOptionList(dropDown);
     },[]); 
@@ -97,6 +82,7 @@ const FormName = () => {
                             value={firstname}
                             minLength="2"
                             maxLength="15"
+                            required="required"
                             />
                         </label>
                         <label htmlFor="last-name">
@@ -108,13 +94,14 @@ const FormName = () => {
                             value={lastname}
                             minLength="2"
                             maxLength="15"
+                            required="required"
                             />
                         </label>
                         <label htmlFor="Birthdate">
                             Birthdate :  
                             <DatePicker handleDate={birthDate => setBirthDate(birthDate)}/>
                         </label>
-                        <label for="Start-date">
+                        <label htmlFor="Start-date">
                             Start date :  
                             <DatePicker handleDate={startDate => setStartDate(startDate)}/>
                         </label>
@@ -128,6 +115,7 @@ const FormName = () => {
                             id="street"
                             onChange={(e)=>setStreet(e.target.value)}
                             value={street}
+                            required="required"
                             />
                         </label>
                         <label htmlFor="city">
@@ -137,6 +125,7 @@ const FormName = () => {
                             id="lastname"
                             onChange={(e)=>setCity(e.target.value)}
                             value={city}
+                            required="required"
                             />
                         </label>
                         <label htmlFor="state">

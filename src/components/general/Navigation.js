@@ -8,7 +8,7 @@ const NavPortail = (props) => {
             <NavLink 
             className="button-redirection" 
             exact to = {props.navContent.urlPath}
-            activeClassName="nav-active"
+            activeclassname="nav-active"
             >
             {props.navContent.currentNavName}
             </NavLink>
