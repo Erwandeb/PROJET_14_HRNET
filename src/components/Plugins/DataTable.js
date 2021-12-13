@@ -21,33 +21,13 @@ export const DataTable = (props) => {
     })
 
 
-    /*
-    function sortTable(){
-        console.log("trigger");
-
-        displayUsers = users.map(user => {
-            return  <tr className="new-user-row">
-                        <td>{user.firstname}</td>
-                        <td>{user.lastname}</td>
-                        <td>eoeo</td>
-                        <td>deded</td>
-                        <td>{user.street}</td>
-                        <td>{user.city}</td>
-                        <td>{user.zipCode}</td>
-                        <td>{user.stateOfEmployee}</td>
-                        <td>{user.departementEmployee}</td>
-                    </tr>
-        })
-    }
-    */
-
    
     function sortTableByColumn(table, column, asc = true) {
         const dirModifier = asc ? 1 : -1;
         const tBody = table.tBodies[0];
         const rows = Array.from(tBody.querySelectorAll("tr"));
     
-        // Sort each row
+        
         const sortedRows = rows.sort((a, b) => {
             const aColText = a.querySelector(`td:nth-child(${ column + 1 })`).textContent.trim();
             const bColText = b.querySelector(`td:nth-child(${ column + 1 })`).textContent.trim();
@@ -60,10 +40,10 @@ export const DataTable = (props) => {
             tBody.removeChild(tBody.firstChild);
         }
     
-        // Re-add the newly sorted rows
+        // newly sorted rows
         tBody.append(...sortedRows);
     
-        // Remember how the column are currently sorted
+     
         table.querySelectorAll("th").forEach(th => th.classList.remove("th-sort-asc", "th-sort-desc"));
         table.querySelector(`th:nth-child(${ column + 1})`).classList.toggle("th-sort-asc", asc);
         table.querySelector(`th:nth-child(${ column + 1})`).classList.toggle("th-sort-desc", !asc);
