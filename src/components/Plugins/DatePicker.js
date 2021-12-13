@@ -30,7 +30,10 @@ export const DatePicker =(props) => {
   const [dateOfTheDay, setDateOfTheDay] = useState(months[month]+ ' ' + day + 'th  ' + year);
 
   const showDatePicker = () => {
-    setDisplayDatePicker(false)
+    setDisplayDatePicker(false);
+  }
+  const closeDatePicker = () => {
+    setDisplayDatePicker(true);
   }
   /*
   // Gestion du format
@@ -55,38 +58,39 @@ export const DatePicker =(props) => {
   function goToNextMonth(){
    
     setDateOfTheDay('');
-    setMonth(date.getMonth()+1)
-    console.log(month)
+    setMonth(month+1)
+   
     
-    if(month > 10){
+    if(month >= 11){
+      setMonth(month-11)
+      setYear(year+1)
+    }
+    if(month === -1){
       setMonth(0)
-      setYear(date.getFullYear()+1)
+      setYear(year-1)
     }
     
-    console.log(month)
-    //creatingMonthAndYear = months[month] +' '+ year;
-  
     setDateToDisplay(months[month] +' '+ year)
-    createDay()
-
+    createDay();
   };
   
  
 
   function goToPrevMonth (){
     setDateOfTheDay('');
+    setMonth(month-1)
 
-    setMonth(date.getMonth()-1)
-
-    if(month < 0){
-      setMonth(11)
-      setYear(date.getFullYear()-1)
+    if(month === 0){
+      setMonth(month + 11)
+      setYear(year-1)
     }
-    console.log(month)
-    //creatingMonthAndYear = months[month] +' '+ year;
- 
+    if(month === -1){
+      setMonth(0)
+      setYear(year-1)
+    }
+
    setDateToDisplay(months[month] +' '+ year)
-    createDay()
+    createDay();
   };
 
 
@@ -95,16 +99,22 @@ export const DatePicker =(props) => {
     
     let totalDaysInAMonth = 31;
     
+    
     if (month === 1){
       totalDaysInAMonth = 28;
     }
+    
 
+    
     for(let i=0; i<totalDaysInAMonth; i++){
       return <div key={i} className="day">{i+1}</div>
+    }
+    
+      /*
+      let dayDisplay = totalDaysInAMonth.map((day)=><div className="day">{day}</div>);
       
-
-      
-
+      return (dayDisplay);
+      */
      /*
       if (selectedDay === (i + 1) && selectedYear === year && selectedMonth === month) {
         dayElement.classList.add('selected');
@@ -120,10 +130,11 @@ export const DatePicker =(props) => {
         //dateText.textContent = formatDate(selectedDate);
         //dateText.dataset.value = selectedDate;
         //createDay();
+        closeDatePicker();
       })
       */
         //displayDay.appendChild(dayElement);
-    }
+    
   }
   
 
@@ -142,7 +153,7 @@ export const DatePicker =(props) => {
                 <i className="fas fa-arrow-right" onClick={goToNextMonth}></i>
               </div>
             <div className="pick-a-day">
-                <div className="displayDay"></div>
+                <div className="displayDay" onClick={createDay}>{}</div>
             </div>
           </div>
           )
