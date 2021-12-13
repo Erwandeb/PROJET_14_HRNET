@@ -1,4 +1,3 @@
-//AuthenticationProvider.js
 import React, { useState, createContext } from "react";
 
 const DEFAULT_STATE = [];

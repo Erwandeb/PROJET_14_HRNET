@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React  from 'react';
 import Form from '../components/CreateEmployee/Form';
 import Footer from '../components/general/Footer';
 import Navigation from '../components/general/Navigation';
