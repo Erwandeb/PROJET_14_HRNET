@@ -31,15 +31,14 @@ export const DatePicker =(props) => {
   const showDatePicker = () => {
     setDisplayDatePicker(false);
     setDateToDisplay(dateOfTheDay);
-
   }
   const closeDatePicker = () => {
     setDisplayDatePicker(true);
   }
-;
 
-console.log(dateOfTheDay);
-console.log(day)
+
+  console.log(dateOfTheDay);
+  console.log(day)
 
   function goToNextMonth(){
    
