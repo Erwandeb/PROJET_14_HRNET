@@ -4,21 +4,19 @@ import React, {useState, useEffect} from "react";
 export const DatePicker =(props) => {
 
   let date = new Date();
+  
   const [displayDatePicker, setDisplayDatePicker] = useState(true);
   const [displayDay, setDisplayDay] = useState();
   const [dateToDisplay, setDateToDisplay] = useState("");
-  const [month, setMonth] = useState(date.getMonth())
-  const [day, setDay] = useState(date.getDay())
-  const [year, setYear] = useState(date.getFullYear())
-
+  const [month, setMonth] = useState(date.getMonth());
+  const [day, setDay] = useState(date.getUTCDate());
+  const [year, setYear] = useState(date.getFullYear());
+  const [chooseDay, setChooseDay] = useState(false)
   const [isDaySelected, setIsDaySelected] = useState(false);
 
   const months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+  const dateText = document.querySelector('.date-text');
 
- 
-  //let day = date.getDate();
-  //let month = date.getMonth();
-  //let year = date.getFullYear();
 
   let selectedDate = date;
   let selectedDay = day;
@@ -32,31 +30,16 @@ export const DatePicker =(props) => {
 
   const showDatePicker = () => {
     setDisplayDatePicker(false);
+    setDateToDisplay(dateOfTheDay);
+
   }
   const closeDatePicker = () => {
     setDisplayDatePicker(true);
   }
+;
 
-
-  /*
-  // Gestion du format
-  function formatDate (d) {
-    let day = d.getDate();
-    if (day < 10) {
-      day = '0' + day;
-    }
-  
-    let month = d.getMonth()+1 ;
-    if (month < 10) {
-      month = '0' + month;
-    }
-
-    let year = d.getFullYear();
-
-    return day + ' / ' + month + ' / ' + year;
-  }
-*/
-
+console.log(dateOfTheDay);
+console.log(day)
 
   function goToNextMonth(){
    
@@ -73,7 +56,8 @@ export const DatePicker =(props) => {
       setYear(year-1)
     }
     
-    setDateToDisplay(months[month] +' '+ year)
+    setDateToDisplay(months[month] +' '+ year);
+    setChooseDay(true);
     createDay();
   };
   
@@ -92,10 +76,10 @@ export const DatePicker =(props) => {
       setYear(year-1)
     }
 
-   setDateToDisplay(months[month] +' '+ year)
+   setDateToDisplay(months[month] +' '+ year);
+   setChooseDay(true);
     createDay();
   };
-
 
   
   function createDay(){
@@ -120,19 +104,35 @@ export const DatePicker =(props) => {
       setIsisDaySelected(false);
     }
     */
+    function formatDate (d) {
+      let day = d.getDate();
+      if (day < 10) {
+        day = '0' + day;
+      }
+    
+      let month = d.getMonth() + 1;
+      if (month < 10) {
+        month = '0' + month;
+      }
+    
+      let year = d.getFullYear();
+    
+      return day + ' / ' + month + ' / ' + year;
+    }
+
 
     function dateValue(){
-      /*
-        selectedDate = new Date(year+'-'+(month+1)+'-'+(day));
-        selectedDay = (day);
-        selectedMonth = month;
-        selectedYear = year;
-      */
-     console.log("trigger")
-     setIsDaySelected(true);
+      selectedDate = new Date(year+'-'+(month+1)+'-'+(day));
+      selectedDay = (day);
+      selectedMonth = month;
+      selectedYear = year;
+
+      console.log("day")
+      setIsDaySelected(true);
       //dateText.textContent = formatDate(selectedDate);
       //dateText.dataset.value = selectedDate;
       //closeDatePicker();
+      //setChooseDay(false);
     }
       
     setDisplayDay(totalDaysInMonth.map((day) =>
@@ -161,26 +161,36 @@ export const DatePicker =(props) => {
   }
   
 
-  return( 
-    <>
-      {
-        displayDatePicker ? (
-          <div className="button-display-datePicker" onClick={showDatePicker} >
-              <p>Choose a date</p>
-          </div>
-          ):(
-            <div className="date-picker">
-              <div className="banner">
-                <i className="fas fa-arrow-left" onClick={goToPrevMonth}></i>
-                  <p className="date-text">{dateToDisplay}</p>
-                <i className="fas fa-arrow-right" onClick={goToNextMonth}></i>
-              </div>
-            <div className="pick-a-day">
-                <div className="displayDay">{displayDay}</div>
+    return( 
+      <>
+        {
+          displayDatePicker ? (
+            <div className="button-display-datePicker" onClick={showDatePicker} >
+                <p>choose a date</p>
             </div>
-          </div>
-          )
+            ):(
+              <div className="date-picker">
+                <div className="banner">
+                  <i className="fas fa-arrow-left" onClick={goToPrevMonth}></i>
+                    <p className="date-text">{dateToDisplay}</p>
+                  <i className="fas fa-arrow-right" onClick={goToNextMonth}></i>
+                </div>
+              </div>
+            )
         }
+          {
+            chooseDay ? 
+            (     
+              <div className="pick-a-day">
+                <div className="displayDay">{displayDay}</div>
+              </div>
+            )
+              :
+            ( 
+              <div></div>
+            )   
+          }
+           
       </>  
     );
 };
