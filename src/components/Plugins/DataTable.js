@@ -6,12 +6,13 @@ export const DataTable = (props) => {
     const {users} = useContext(userContext);
 
     
+    console.log(users);
     let displayUsers = users.map(user => {
         return  <tr className="new-user-row" key={user.firstname}>
                     <td>{user.firstname}</td>
                     <td>{user.lastname}</td>
-                    <td>eoeo</td>
-                    <td>deded</td>
+                    <td>{user.birthdate.toString()}</td>
+                    <td>éded</td>
                     <td>{user.street}</td>
                     <td>{user.city}</td>
                     <td>{user.zipCode}</td>
@@ -21,7 +22,6 @@ export const DataTable = (props) => {
     })
 
 
-   
     function sortTableByColumn(table, column, asc = true) {
         const dirModifier = asc ? 1 : -1;
         const tBody = table.tBodies[0];
