@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 
 
-export const DatePicker =(props) => {
+export const DatePicker = (props) => {
 
   let date = new Date();
   
@@ -16,7 +16,7 @@ export const DatePicker =(props) => {
 
   const months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
   const dateText = document.querySelector('.date-text');
-
+  const dayDiv = document.querySelector(".day");
 
   let selectedDate = date;
   let selectedDay = day;
@@ -36,16 +36,30 @@ export const DatePicker =(props) => {
     setDisplayDatePicker(true);
   }
 
-
   console.log(dateOfTheDay);
   console.log(day)
 
+  function formatDate (d) {
+    let day = d.getDate();
+    if (day < 10) {
+      day = '0' + day;
+    }
+  
+    let month = d.getMonth() + 1;
+    if (month < 10) {
+      month = '0' + month;
+    }
+  
+    let year = d.getFullYear();
+  
+    return day + ' / ' + month + ' / ' + year;
+  }
+
+
   function goToNextMonth(){
-   
     setDateOfTheDay('');
     setMonth(month+1)
    
-    
     if(month >= 11){
       setMonth(month-11)
       setYear(year+1)
@@ -80,21 +94,28 @@ export const DatePicker =(props) => {
     createDay();
   };
 
+  function dateValue(){
+    selectedDate = new Date(year+'-'+(month+1)+'-'+(day));
+    selectedDay = (day);
+    selectedMonth = month;
+    selectedYear = year;
+
+    console.log("day")
+    setIsDaySelected(true);
+    //dateText.textContent = formatDate(selectedDate);
+    //dateText.dataset.value = selectedDate;
+    //closeDatePicker();
+    //setChooseDay(false);
+  }
+
+
   
   function createDay(){
-    
-    //setIsDaySelected(false);
     let totalDaysInMonth = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];
-    
     if (month === 1){
       totalDaysInMonth = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28];
     }
     
-    /*
-    for(let i=0; i<totalDaysInAMonth; i++){
-      return <div key={i} className="day">{i+1}</div>
-    }
-    */
    /*
     if (selectedDay === (day) && selectedYear === year && selectedMonth === month) {
       //day.classList.add('selected');
@@ -102,43 +123,17 @@ export const DatePicker =(props) => {
     } else{
       setIsisDaySelected(false);
     }
-    */
-    function formatDate (d) {
-      let day = d.getDate();
-      if (day < 10) {
-        day = '0' + day;
-      }
-    
-      let month = d.getMonth() + 1;
-      if (month < 10) {
-        month = '0' + month;
-      }
-    
-      let year = d.getFullYear();
-    
-      return day + ' / ' + month + ' / ' + year;
-    }
-
-
-    function dateValue(){
-      selectedDate = new Date(year+'-'+(month+1)+'-'+(day));
-      selectedDay = (day);
-      selectedMonth = month;
-      selectedYear = year;
-
-      console.log("day")
-      setIsDaySelected(true);
-      //dateText.textContent = formatDate(selectedDate);
-      //dateText.dataset.value = selectedDate;
-      //closeDatePicker();
-      //setChooseDay(false);
-    }
-      
+    */      
     setDisplayDay(totalDaysInMonth.map((day) =>
       <div key={day} onClick={dateValue} className={`${isDaySelected ? "day-selected" : "day"}`}>
-          {day}
+        {day}
       </div>)
     );
+    
+    if (selectedDay === (day) && selectedYear === year && selectedMonth === month) {
+      //day.classList.add('selected');
+      setIsDaySelected(true);
+    }
 
     return(displayDay)
   
@@ -159,6 +154,8 @@ export const DatePicker =(props) => {
         //displayDay.appendChild(dayElement);
   }
   
+
+
 
     return( 
       <>
