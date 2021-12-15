@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 
 
 export const DatePicker = (props) => {
@@ -15,8 +15,6 @@ export const DatePicker = (props) => {
   const [daySelected, setDaySelected] = useState(new Date());
 
   const months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
-  const dateText = document.querySelector('.date-text');
-  const dayDiv = document.querySelector(".day");
 
   let selectedDate = date;
   let selectedDay = day;
@@ -34,6 +32,7 @@ export const DatePicker = (props) => {
   }
   const closeDatePicker = () => {
     setDisplayDatePicker(true);
+    setChooseDay(false)
   }
 
  
@@ -42,16 +41,11 @@ export const DatePicker = (props) => {
     if (day < 10) {
       day = '0' + day;
     }
-
-  
     let month = d.getMonth()+1;
     if (month < 10) {
       month = '0' + month;
     }
-
     let year = d.getFullYear();
-
-  
     return day + '/' + month + '/' + year;
   }
 
@@ -102,17 +96,11 @@ export const DatePicker = (props) => {
 
 
     setDaySelected(selectedDate);
-
     props.handleDate(selectedDate);
-
-    console.log(selectedDate);
-
     const dateTransformed = formatDate(selectedDate)
-
     setDateToDisplay(dateTransformed);
-    //const selectedDay = document.querySelector(".day-selected");
 
-    //selectedDay.dataset.value = dateTransformed;
+    closeDatePicker()
   }
 
 
@@ -123,13 +111,6 @@ export const DatePicker = (props) => {
       totalDaysInMonth = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28];
     }
     
-    /*
-    if (selectedDay === (day) && selectedYear === year && selectedMonth === month) {
-      //day.classList.add('selected');
-      setDaySelected(true);
-    }
-    */
-
     const isDaySelected =(day)=>{
       const date = new Date(year,month,day-1,10,0,0,0);
       console.log(date, daySelected);
@@ -145,6 +126,7 @@ export const DatePicker = (props) => {
     return(displayDay)
   }
 
+
   let totalDaysInMonth = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];
   if (month === 1){
     totalDaysInMonth = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28];
@@ -154,6 +136,7 @@ export const DatePicker = (props) => {
     const date = new Date(year,month,day);
     return formatDate(date) === formatDate(daySelected)
   }
+
 
     return( 
       <>

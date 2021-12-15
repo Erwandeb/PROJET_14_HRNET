@@ -11,8 +11,8 @@ export const DataTable = (props) => {
         return  <tr className="new-user-row" key={user.firstname}>
                     <td>{user.firstname}</td>
                     <td>{user.lastname}</td>
-                    <td>{user.birthdate.toString()}</td>
-                    <td>éded</td>
+                    <td>{user.birthdate.toISOString().substring(0, 10)}</td>
+                    <td>{user.startdate.toISOString().substring(0, 10)}</td>
                     <td>{user.street}</td>
                     <td>{user.city}</td>
                     <td>{user.zipCode}</td>
