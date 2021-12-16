@@ -13,6 +13,8 @@ export const DatePicker = (props) => {
   const [year, setYear] = useState(date.getFullYear());
   const [chooseDay, setChooseDay] = useState(false)
   const [daySelected, setDaySelected] = useState(new Date());
+  const [dayChoosed, setDayChoosed] = useState(false);
+  const [textInput, SetTextInput] = useState("");
 
   const months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
 
@@ -21,7 +23,6 @@ export const DatePicker = (props) => {
   let selectedMonth = month;
   let selectedYear = year;
 
-  let creatingMonthAndYear;
 
  
   const [dateOfTheDay, setDateOfTheDay] = useState(months[month]+ ' ' + day + 'th  ' + year);
@@ -94,17 +95,18 @@ export const DatePicker = (props) => {
     selectedMonth = month;
     selectedYear = year;
 
-
     setDaySelected(selectedDate);
     props.handleDate(selectedDate);
     const dateTransformed = formatDate(selectedDate)
     setDateToDisplay(dateTransformed);
 
     closeDatePicker()
+    setDayChoosed(true);
+    SetTextInput(dateTransformed)
   }
 
 
-  
+ 
   function createDay(){
     let totalDaysInMonth = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];
     if (month === 1){
@@ -113,12 +115,11 @@ export const DatePicker = (props) => {
     
     const isDaySelected =(day)=>{
       const date = new Date(year,month,day-1,10,0,0,0);
-      console.log(date, daySelected);
       return formatDate(date) === formatDate(daySelected)
     }
 
     setDisplayDay(totalDaysInMonth.map((day) =>
-      <div key={day} onClick={()=>dateValue(day)} value="" className={`${isDaySelected(day) ? "day-selected" : "day"}`}>
+      <div key={day} onClick={()=>dateValue(day)} className={`${isDaySelected(day) ? "day-selected" : "day"}`}>
         {day}
       </div>)
     );
@@ -143,7 +144,20 @@ export const DatePicker = (props) => {
         {
           displayDatePicker ? (
             <div className="button-display-datePicker" onClick={showDatePicker} >
-                <p>choose a date</p>
+                {
+                  dayChoosed ? 
+                  (
+                    <div>
+                      <p>{textInput}</p>
+                    </div>
+                  )
+                  :
+                  (
+                    <div>
+                      <p>choose a date</p>
+                    </div>
+                  )
+                }
             </div>
             ):(
               <div className="date-picker">
@@ -160,7 +174,7 @@ export const DatePicker = (props) => {
             (     
               <div className="pick-a-day">
                 <div className="displayDay">{totalDaysInMonth.map((day) =>
-                <div key={day} onClick={()=>dateValue(day)} value="" className={`${isDaySelected(day+1) ? "day-selected" : "day"}`}>
+                <div key={day} onClick={()=>dateValue(day)} className={`${isDaySelected(day+1) ? "day-selected" : "day"}`}>
                   {day}
                 </div>)}</div>
               </div>
