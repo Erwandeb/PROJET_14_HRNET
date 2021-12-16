@@ -5,8 +5,6 @@ import { userContext} from "../../userContext";
 export const DataTable = (props) => {
     const {users} = useContext(userContext);
 
-    
-    console.log(users);
     let displayUsers = users.map(user => {
         return  <tr className="new-user-row" key={user.firstname}>
                     <td>{user.firstname}</td>

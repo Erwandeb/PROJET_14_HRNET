@@ -109,7 +109,7 @@ const FormName = () => {
                 <fieldset className="adress">
                     <legend>Adress</legend>
                         <label htmlFor="first-name">
-                            Street:  
+                            Street :  
                             <input 
                             type="text" 
                             id="street"
@@ -140,7 +140,7 @@ const FormName = () => {
                             onChange={handleStateChangeState}/>
                         </label>
                         <label htmlFor="Zip-code">
-                            Zip-code  
+                            Zip-code : 
                             <input 
                             type="number" 
                             id="zipcode"
@@ -151,7 +151,7 @@ const FormName = () => {
                 </fieldset>
                 <fieldset className="services">
                     <legend>Services</legend>
-                    <label htmlFor="department" className="departement-style">Department</label>
+                    <label htmlFor="department" className="departement-style">Department : </label>
                         <DropdownList 
                         options={optionList?.departement?.map((element)=>{
                             return {
