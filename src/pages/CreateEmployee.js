@@ -4,7 +4,6 @@ import Footer from '../components/general/Footer';
 import Navigation from '../components/general/Navigation';
 
 
-
 const Home = () => {
 
    
@@ -13,7 +12,6 @@ const Home = () => {
         urlPath: '/Employees'
     }
     
-
     return (
         <div className="home">
             <Navigation navContent={ButtonNavigationContent}/>

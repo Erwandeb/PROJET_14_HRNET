@@ -19,7 +19,7 @@ const Employees = () => {
                 <h1>CURRENT EMPLOYEES</h1>
             </div>
             <div className="form-block">
-            <DataTable/>
+                <DataTable/>
             </div>
             <Footer/>
         </div>
