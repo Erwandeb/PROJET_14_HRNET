@@ -1,5 +1,10 @@
 import React, {useState} from "react";
 
+/***
+ * DatePicker plugin to render date
+ * 
+ */
+
 
 export const DatePicker = (props) => {
 

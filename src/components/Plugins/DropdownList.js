@@ -1,6 +1,11 @@
 import React from "react";
 
 
+/***
+ * Dropdown list plugin, also available on NPM
+ * 
+ */
+
 export const DropdownList = (props) => {
     if(!props.options) {
         return null

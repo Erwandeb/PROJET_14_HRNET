@@ -1,5 +1,9 @@
 import React from "react";
 
+/***
+ * Modal Dialog Plugin 
+ * 
+ */
 
 export const ModalDialog = (props) => {
 

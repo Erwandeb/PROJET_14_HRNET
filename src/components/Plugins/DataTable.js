@@ -2,6 +2,12 @@ import React, {useContext} from "react";
 import { userContext} from "../../userContext";
 
 
+/***
+ * Data Table plugin for displaying all data from the create employee form
+ * 
+ */
+
+
 export const DataTable = (props) => {
     const {users} = useContext(userContext);
 
