@@ -6,6 +6,8 @@ import { DatePicker } from '../Plugins/DatePicker';
 import {userContext} from '../../userContext';
 
 
+
+
 const FormName = () => {
 
     const [firstname, setFirstname] = useState("");
@@ -67,7 +69,7 @@ const FormName = () => {
         setBirthDate({date})
     }
 
-
+  
     return (
         <div className="formDisplay">
             <form action="#" onSubmit={handleSavingForm} >
@@ -153,14 +155,14 @@ const FormName = () => {
                     <legend>Services</legend>
                     <label htmlFor="department" className="departement-style">Department : </label>
                         <DropdownList 
-                        options={optionList?.departement?.map((element)=>{
-                            return {
-                                id:element,
-                                value:element
-                                }
-                            })}
-                            onChange={handleStateChangeDepartement} 
-                        />
+                            options={optionList?.departement?.map((element)=>{
+                                return {
+                                    id:element,
+                                    value:element
+                                    }
+                                })}
+                                onChange={handleStateChangeDepartement} 
+                            />
                 </fieldset>
                 <button className="save-form" type="submit" onClick={ModalDialog}>SAVE</button>
             </form>
