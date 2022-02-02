@@ -7,12 +7,12 @@ Grâce à React et la technologie des hooks, la navigation et le transfert des d
 ## Quelques captures d'écrans : 
 
 Vue 1 :
-<img width="1065" alt="Capture" src="https://user-images.githubusercontent.com/73883090/152115268-81977730-145a-4a60-8f3f-3e32a58870fa.PNG">
+<img width="930" alt="Capture" src="https://user-images.githubusercontent.com/73883090/152115268-81977730-145a-4a60-8f3f-3e32a58870fa.PNG">
 
 
 
 Vue 2 :
-<img width="1075" alt="Capture3" src="https://user-images.githubusercontent.com/73883090/152115422-99d575f6-9d88-4279-afd4-f1d13c828c30.PNG">
+<img width="930" alt="Capture2" src="https://user-images.githubusercontent.com/73883090/152117309-8fbc2254-8ae0-48df-a990-f3b2c9f945d3.PNG">
 
 
 
